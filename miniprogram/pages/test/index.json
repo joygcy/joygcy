@@ -1,6 +1,6 @@
 {
   "navigationBarTitleText": "test",
   "usingComponents": {
-    "fingering-canvas": "../../components/fingering-canvas/fingering"
+    "fingering-canvas": "../../components/fingering/fingering"
   }
 }

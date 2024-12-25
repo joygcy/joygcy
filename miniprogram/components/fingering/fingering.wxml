@@ -1,6 +1,5 @@
-<!--components/fingering/fingering.wxml-->
-<view class="finger">
-  <image wx:if="{{showImage}}" src="/components/fingering/f.png" class="image" />
-  <view wx:for="{{dots}}" wx:key="item" class="dot dot{{item}}" />
-  <!-- <view class="dot dot1" /> -->
-</view>
+<canvas
+  type="2d"
+  id="myCanvas"
+  style="width: 102px; height: 72px;"
+></canvas>
