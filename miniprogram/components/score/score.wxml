@@ -5,7 +5,7 @@
       <view wx:for="{{section}}" wx:key="index" wx:for-item="beat" class="beat">
         <!-- 节拍连接线 -->
         <view wx:for="{{beat}}" wx:key="index" wx:for-index="scoreIndex" class="score">
-          <fingering note="{{item.scaleNote}}" id="score{{item.key}}" />
+          <fingering note="{{item.scaleNote}}" key="score{{item.key}}" />
           <view class="note {{item.scale}} linking-{{item.linking}} {{activeKey === item.key ? 'active': ''}}">{{item.note}}</view>
           
           <view class="score-right">

@@ -19,6 +19,10 @@ Component({
       type: String,
       value: '',
     },
+    key: {
+      type: String,
+      value: 'score'
+    }
   },
 
   /**
@@ -31,7 +35,7 @@ Component({
     ready() {
       // 通过 SelectorQuery 获取 Canvas 节点
       this.createSelectorQuery()
-        .select('#myCanvas')
+        .select('#' + this.properties.key)
         .fields({
           node: true,
           size: true,

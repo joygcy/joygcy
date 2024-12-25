@@ -12,8 +12,6 @@
   </view>
 </view>
 
-<cax id="myCanvas"></cax>
-
 <!-- 间奏播放提示 -->
 <view wx:if="{{showInterlude}}" class="interlude-modal">
   <view class="interlude-modal-mask"></view>
