@@ -28,48 +28,72 @@ Component({
   },
 
   lifetimes: {
-    attached() {
-      const ctx = wx.createCanvasContext('myCanvas');
-
-      // 画出主体部分
-      ctx.beginPath();
-      ctx.moveTo(50, 75);
-      ctx.bezierCurveTo(50, 60, 150, 60, 150, 75);
-      ctx.lineTo(350, 75);
-      ctx.bezierCurveTo(350, 100, 250, 100, 250, 125);
-      ctx.lineTo(150, 125);
-      ctx.bezierCurveTo(150, 100, 50, 100, 50, 75);
-      ctx.closePath();
-      ctx.setFillStyle('red');
-      ctx.fill();
-
-      // 添加吹口（假设在顶部中央）
-      ctx.beginPath();
-      ctx.arc(200, 50, 10, 0, 2 * Math.PI);
-      ctx.setFillStyle('#8B4513');  // 使用棕色表示吹口
-      ctx.fill();
-
-      // 绘制指孔
-      const holePositions = [
-        [100, 90], [150, 90], [200, 90], [250, 90], [300, 90],
-        [100, 120], [150, 120], [200, 120], [250, 120], [300, 120],
-        [100, 150], [200, 150]
-      ];
-      for (let i = 0; i < holePositions.length; i++) {
-        ctx.beginPath();
-        ctx.arc(holePositions[i][0], holePositions[i][1], 5, 0, 2 * Math.PI);
-        ctx.setFillStyle('#FFFFFF');  // 白色圆圈代表指孔
-        ctx.fill();
+    ready() {
+      // 通过 SelectorQuery 获取 Canvas 节点
+      this.createSelectorQuery()
+        .select('#myCanvas')
+        .fields({
+          node: true,
+          size: true,
+        })
+        .exec(this.init.bind(this))
       }
-
-      // 绘制到 canvas 上
-      ctx.draw();
-    }
   },
   /**
    * 组件的方法列表
    */
   methods: {
+    init(res) {
+      const width = res[0].width
+      const height = res[0].height
+  
+      const canvas = res[0].node
+      const ctx = canvas.getContext('2d')
+  
+      const dpr = wx.getSystemInfoSync().pixelRatio
+      canvas.width = width * dpr
+      canvas.height = height * dpr
+      ctx.scale(dpr, dpr)
+      this.render(canvas, ctx)
+    },
+  
+    render(canvas, ctx) {
+      ctx.clearRect(0, 0, 300, 150)
+      ctx.scale(0.5, 0.5);
+      this.drawBody(ctx);
+      this.drawHole(ctx);
+    },
 
+    drawBody(ctx) {
+      ctx.beginPath()
+      ctx.moveTo(37, 52);
+      ctx.quadraticCurveTo(5, 47, 1, 35);
+      ctx.bezierCurveTo(-7, 9, 75, -2, 97, 2);
+      ctx.bezierCurveTo(117, 7, 52, 42, 49, 49);
+      ctx.bezierCurveTo(45, 55, 47, 70, 44, 70);
+      ctx.lineTo(37, 70);
+      ctx.quadraticCurveTo(34, 70, 37, 52);
+      ctx.fillStyle = '#B4E088'
+      ctx.strokeStyle = '#333333'
+      ctx.fill()
+      ctx.stroke()
+    },
+    drawHole(ctx) {
+      // 绘制指孔
+      const holePositions = [
+        [55, 60], [28, 60], 
+        [10, 34], [18, 26], [27, 20], [38, 16], 
+        [58, 31], [68, 24], [79, 17], [90, 10],
+        [24, 34], [62, 16]
+      ];
+      for (let i = 0; i < holePositions.length; i++) {
+        ctx.beginPath()
+        ctx.arc(holePositions[i][0], holePositions[i][1], 4, 0, Math.PI * 2)
+        ctx.fillStyle = toneF[this.properties.note]?.includes(i+1) ? '#333' : '#FFFFFF';
+        ctx.strokeStyle = '#333333'
+        ctx.fill()
+        ctx.stroke()
+      }
+    },
   }
 })
