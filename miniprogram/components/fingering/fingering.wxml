@@ -1,5 +1,7 @@
-<canvas
-  type="2d"
-  id="{{key}}"
-  style="width: 52px; height: 36px;"
-></canvas>
+<view class="fingering-container">
+  <canvas
+    type="2d"
+    id="{{key}}"
+    style="width: 104rpx; height: 72rpx;"
+  ></canvas>
+</view>
