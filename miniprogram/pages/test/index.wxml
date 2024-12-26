@@ -1,1 +1,1 @@
-<fingering-canvas />
+<score scores="{{scores}}" />

@@ -1,4 +1,4 @@
-<view class="fingering-container">
+<view wx:if="{{note !== 0}}" class="fingering-container">
   <canvas
     type="2d"
     id="{{key}}"
