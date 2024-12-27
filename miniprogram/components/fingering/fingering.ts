@@ -13,7 +13,7 @@ Component({
     // 音
     note: {
       type: String,
-      value: '3'
+      value: ''
     },
     scale: {
       type: String,

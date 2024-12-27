@@ -1,5 +1,6 @@
-<view wx:if="{{showFingerImg}}" class="fingering-container">
+<view class="fingering-container">
   <canvas
+    wx:if="{{showFingerImg}}"
     type="2d"
     id="{{key}}"
     style="width: 104rpx; height: 72rpx;"
