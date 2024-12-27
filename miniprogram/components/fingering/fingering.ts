@@ -37,15 +37,16 @@ Component({
       // 守卫代码，如果没有对应的指法，就不展示
       if(!toneF[this.properties.note]) {
         this.setData({ showFingerImg: false });
-      }
-      // 通过 SelectorQuery 获取 Canvas 节点
-      this.createSelectorQuery()
-        .select('#' + this.properties.key)
-        .fields({
-          node: true,
-          size: true,
-        })
-        .exec(this.init.bind(this))
+      } else {
+        // 通过 SelectorQuery 获取 Canvas 节点
+        this.createSelectorQuery()
+          .select('#' + this.properties.key)
+          .fields({
+            node: true,
+            size: true,
+          })
+          .exec(this.init.bind(this))
+        }
       }
   },
   /**
