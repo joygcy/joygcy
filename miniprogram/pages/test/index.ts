@@ -1,5 +1,5 @@
 import Score from "../../utils/score"
-import { beatNumPerSection, beatTime, musicInfo, scorePlayOrder } from "./data";
+import { beatNumPerSection, beatTime, musicInfo, scorePlayOrder, paragraphs } from "./data";
 
 const app = getApp()
 
@@ -13,7 +13,8 @@ Page({
       playOrder: scorePlayOrder,
       beatTime: beatTime,
       musicInfo: musicInfo,
-      beatNumPerSection: beatNumPerSection
+      beatNumPerSection: beatNumPerSection,
+      paragraphs: paragraphs
     });
     console.log('===== ~  myScore：', myScore.scores);
     this.setData({scores: myScore.scores})

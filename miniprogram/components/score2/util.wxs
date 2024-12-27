@@ -1,11 +1,31 @@
 // 根据占用时长，解析score占用宽度
 var getWidth = function (item) {
-  var basic = 400;
+  var basic = 200;
   if (item.half) basic = basic * 0.5;
   if (item.quarter) basic = basic * 0.25;
   if (item.extend) basic = basic * 1.5;
   return basic;
 }
+
+// 解析出音符,将-5解析成5
+var getNote = function (scaleNote) {
+  if (!scaleNote) return '';
+
+  return scaleNote.charAt(scaleNote.length - 1);
+}
+
+// 解析出音阶,将-5解析成bass
+var getScale = function (scaleNote) {
+  if (!scaleNote) return '';
+  if (scaleNote.indexOf('++') !== -1) return 'double-high';
+  if (scaleNote.indexOf('+') !== -1) return 'high';
+  if (scaleNote.indexOf('--') !== -1) return 'double-bass';
+  if (scaleNote.indexOf('-') !== -1) return 'bass';
+  return '' 
+}
+
 module.exports = {
   getWidth: getWidth,
+  getNote: getNote,
+  getScale: getScale,
 };

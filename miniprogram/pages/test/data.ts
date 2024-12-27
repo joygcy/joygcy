@@ -67,18 +67,25 @@ export const sectionStringArray = [
   { key: 'D', sections: D },
 ];
 
+export const paragraphs = {
+  A: ['-5 halfStart', '-6 halfEnd', '1 extend sectionStart', '2 half']
+}
+
 // 演奏顺序
 export const scorePlayOrder = [
   'music1', 'A', 'B', 'C', 'music2', 'A', 'B', 'C', 'B', 'D',
 ]
 // 间奏时长
 export const musicInfo = {
-  music1: 4,
+  music1: {
+    head: 4,
+    foot: 1,
+  },
   music2: 8,
 }
 // 一节拍=多少ms
 export const beatTime = 833;
-export const beatNumPerSection = 4;
+export const beatNumPerSection = 2;
 // 伴奏地址
 export const accompanyUrl = 'https://res.wx.qq.com/voice/getvoice?mediaid=MzI1MDUxMDQwMV8yMjQ3NTAxMDA0'; 
 

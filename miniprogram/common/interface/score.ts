@@ -7,7 +7,7 @@ export interface IScore {
   half?: boolean; // 是否半音节
   quarter?: boolean; // 是否四分音节
   linking?: 'start' | 'stop' | 'middle' | false
-  sectionStartOrEnd?: 'start' | 'end' | ''; // 是否一个小节的开始or结束
+  sectionStart?: boolean; // 是否一个小节的开始o
 }
 // 拍
 type IBeat = IScore[];

@@ -2,14 +2,16 @@
 
 <view class="score-container">
   <view wx:for="{{scores}}" wx:key="key" class="note" style="width: {{util.getWidth(item)}}rpx;">
-    <fingering note="{{item.scaleNote}}" key="score{{item.key}}" />
-    <view class="note {{item.scale}} linking-{{item.linking}}">{{item.note}}</view>
+    <fingering note="{{item.note}}" key="score{{item.key}}" />
+    <view class="note {{util.getScale(item.note)}} linking-{{item.linking}}">{{util.getNote(item.note)}}</view>
     
 
     <view class="score-right"></view>
-    <view wx:if="{{item.sectionStartOrEnd === 'start'}}" class="section-start"></view>
+    <view wx:if="{{item.sectionStart}}" class="section-start"></view>
     <view wx:if="{{item.extend}}" class="extend"></view>
     <view wx:if="{{item.half}}" class="half"></view>
+    <view wx:if="{{item.halfStart}}" class="half-start"></view>
+    <view wx:if="{{item.halfEnd}}" class="half-end"></view>
     <view wx:if="{{item.quarter}}" class="quarter"></view>
     <view wx:if="{{(item.half || item.quarter) && (beat[scoreIndex + 1].half || beat[scoreIndex + 1].quarter)}}" class="halfLine"></view>
     <view wx:if="{{(item.quarter) && (beat[scoreIndex + 1].quarter)}}" class="quarterLine"></view>
