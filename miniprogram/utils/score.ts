@@ -32,14 +32,30 @@ export default class Score {
   }
 
   // 生成间奏的曲谱
-  private getMusicScoreByBeatNum(beatNum?: number): IScore[] {
+  private getMusicScoreByBeatNum(beatNum?: number, type?: 'head' | 'middle' | 'foot'): IScore[] {
     const result: IScore[] = [];
     if (!beatNum) return [];
     let index = 0;
+    let isSectionStart = false;
+    switch (type) {
+      case 'head':
+        isSectionStart = index === beatNum;
+        break;
+      case 'middle':
+        isSectionStart = index % this.beatNumPerSection === 0;
+        break;
+      case 'foot':
+        isSectionStart = index === 0;
+        break;
+    
+      default:
+        break;
+    }
     do {
       result.push({
         note: 0,
         key: this.beatTotal++,
+        sectionStartOrEnd: index % this.beatNumPerSection === 0 ? 'start' : ''
       });
       index++;
     } while (index < beatNum);
@@ -53,9 +69,9 @@ export default class Score {
       return this.getMusicScoreByBeatNum(music);
     }
     // 有可能间奏不是一整节
-    result = result.concat(this.getMusicScoreByBeatNum(music.head))
-    result = result.concat(this.getMusicScoreByBeatNum(music.middle))
-    result = result.concat(this.getMusicScoreByBeatNum(music.foot))
+    result = result.concat(this.getMusicScoreByBeatNum(music.head, 'head'))
+    result = result.concat(this.getMusicScoreByBeatNum(music.middle, 'middle'))
+    result = result.concat(this.getMusicScoreByBeatNum(music.foot, 'foot'))
     return result;
   }
   // 遍历演奏顺序，生成曲谱

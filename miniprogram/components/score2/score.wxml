@@ -1,18 +1,19 @@
 <wxs src="./util.wxs" module="util" />
 
 <view class="score-container">
-  <view wx:for="{{scores}}" wx:key="key" class="score">
+  <view wx:for="{{scores}}" wx:key="key" class="note" style="width: {{util.getWidth(item)}}rpx;">
     <fingering note="{{item.scaleNote}}" key="score{{item.key}}" />
     <view class="note {{item.scale}} linking-{{item.linking}}">{{item.note}}</view>
     
-    <view class="score-right">
-    </view>
-      <view wx:if="{{item.extend}}" class="extend"></view>
-      <view wx:if="{{item.half}}" class="half"></view>
-      <view wx:if="{{item.quarter}}" class="quarter"></view>
-      <view wx:if="{{(item.half || item.quarter) && (beat[scoreIndex + 1].half || beat[scoreIndex + 1].quarter)}}" class="halfLine"></view>
-      <view wx:if="{{(item.quarter) && (beat[scoreIndex + 1].quarter)}}" class="quarterLine"></view>
-    <view class="score-bottom">
-    </view>
+
+    <view class="score-right"></view>
+    <view wx:if="{{item.sectionStartOrEnd === 'start'}}" class="section-start"></view>
+    <view wx:if="{{item.extend}}" class="extend"></view>
+    <view wx:if="{{item.half}}" class="half"></view>
+    <view wx:if="{{item.quarter}}" class="quarter"></view>
+    <view wx:if="{{(item.half || item.quarter) && (beat[scoreIndex + 1].half || beat[scoreIndex + 1].quarter)}}" class="halfLine"></view>
+    <view wx:if="{{(item.quarter) && (beat[scoreIndex + 1].quarter)}}" class="quarterLine"></view>
+    <view class="score-bottom"></view>
+
   </view>
 </view>

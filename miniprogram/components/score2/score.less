@@ -4,37 +4,10 @@
   display: flex;
   flex-wrap: wrap;
 }
-.paragraph {
-  display: flex;
-  flex-wrap: wrap;
-  .paragraph-key {
-    align-self: center;
-    height: min-content;
-    border: solid 1px #000;
-    padding: 1px;
-  }
-}
-.section {
-  display: flex;
-  flex-wrap: wrap;
-  border-right: solid 1px #000;
 
-  margin-top: 16rpx;
-  margin-bottom: 50rpx;
-}
-
-.beat{
-  display: flex;
-  flex-wrap: wrap;
-  position: relative;
-  padding: 8rpx;
-}
-
-
-.score {
+.note {
   position: relative;
   text-align: center;
-  border: solid 1px #333;
 }
 
 .note {
@@ -136,4 +109,13 @@
     height: 1px;
     background-color: #000;
   }
+
+.section-start {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 100%;
+  background-color: #000;
+}
 
