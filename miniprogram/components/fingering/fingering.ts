@@ -29,10 +29,15 @@ Component({
    * 组件的初始数据
    */
   data: {
+    showFingerImg: true,
   },
 
   lifetimes: {
     ready() {
+      // 守卫代码，如果没有对应的指法，就不展示
+      if(!toneF[this.properties.note]) {
+        this.setData({ showFingerImg: false });
+      }
       // 通过 SelectorQuery 获取 Canvas 节点
       this.createSelectorQuery()
         .select('#' + this.properties.key)
