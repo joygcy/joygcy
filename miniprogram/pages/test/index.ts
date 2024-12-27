@@ -1,11 +1,12 @@
 import Score from "../../utils/score"
+import { IScore } from "../../common/interface/score";
 import { beatNumPerSection, beatTime, musicInfo, scorePlayOrder, paragraphs } from "./data";
 
 const app = getApp()
 
 Page({
   data: {
-    scores: [],
+    scores: [] as IScore[],
   },
 
   onLoad: function () {

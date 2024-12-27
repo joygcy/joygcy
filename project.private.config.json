@@ -8,6 +8,13 @@
     "miniprogram": {
       "list": [
         {
+          "name": "录音",
+          "pathName": "pages/record2/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
           "name": "test",
           "pathName": "pages/test/index",
           "query": "",

@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/record2/index",
     "pages/record/index",
     "pages/test/index"
   ],
