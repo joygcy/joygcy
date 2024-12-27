@@ -1,8 +1,8 @@
 // 根据占用时长，解析score占用宽度
 var getWidth = function (item) {
-  var basic = 200;
-  if (item.half) basic = basic * 0.5;
-  if (item.quarter) basic = basic * 0.25;
+  var basic = 400;
+  if (item.half || item.halfStart || item.halfEnd) basic = basic * 0.5;
+  if (item.quarter || item.quarterStart || item.quarterEnd) basic = basic * 0.25;
   if (item.extend) basic = basic * 1.5;
   return basic;
 }

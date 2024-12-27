@@ -97,7 +97,6 @@ export default class Score {
     for (let index = 0; index < play.length; index++) {
       const str = play[index];
       const arr = str.split(' ');
-      console.log('===== ~  arr：', arr);
       if (arr.length === 0) break;
 
       result.push({

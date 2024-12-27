@@ -3,15 +3,33 @@
 .score-container {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
-.note {
+.score {
   position: relative;
   text-align: center;
+  background-color: pink;
+  margin-bottom: 20rpx;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
 }
 
-.note {
+.score-left,
+.score-right {
   position: relative;
+}
+
+.note-container {
+  display: flex;
+  justify-content: start;
+  position: relative;
+  width: 100%;
+}
+.note {
   padding-top: 16rpx;
 }
 .active {
@@ -27,32 +45,31 @@
 }
 .linking-start::before {
   .linking;
-  left: 50%;
-  width: 50%;
+  left: 8rpx;
+  width: 100%;
   border-top: solid 1px #000;
   border-left: solid 1px #000;
-  border-radius: 4rpx;
+  border-top-left-radius: 4rpx;
 }
 .linking-middle::before {
   .linking;
   left: 0;
-  width: 100%;
+  right: 0;
   border-top: solid 1px #000;
 }
-.linking-stop::before {
+.linking-end::before {
   .linking;
-  right: 50%;
-  width: 50%;
+  left: 0;
+  width: 20rpx;
   border-top: solid 1px #000;
   border-right: solid 1px #000;
-  border-radius: 4rpx;
+  border-top-right-radius: 4rpx;
 }
 // 低音的点
 .bass::after {
   position: absolute;
   bottom: -32rpx;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 4rpx;
   content: '·';
 }
 // 高音的点
@@ -67,7 +84,7 @@
   .extend {
     position: absolute;
     bottom: 16rpx;
-    right: 32rpx;
+    left: 8rpx;
     content: ' ';
     width: 8rpx;
     height: 8rpx;
@@ -75,20 +92,27 @@
     background-color: #000;
   }
 
-  .half {
-    position: absolute;
-    bottom: 2rpx;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 20rpx;
-    height: 1px;
-    background-color: #000;
-  }
+.half {
+  position: absolute;
+  bottom: 2rpx;
+  left: 0;
+  width: 20rpx;
+  height: 1px;
+  background-color: #000;
+}
 .half-start {
   position: absolute;
   bottom: 2rpx;
+  left: 0;
   right: 0;
-  width: calc(50% + 10rpx);
+  height: 1px;
+  background-color: #000;
+}
+.half-middle {
+  position: absolute;
+  bottom: 2rpx;
+  left: 0;
+  right: 0;
   height: 1px;
   background-color: #000;
 }
@@ -96,32 +120,32 @@
   position: absolute;
   bottom: 2rpx;
   left: 0;
-  width: calc(50% + 10rpx);
+  width: 20rpx;
   height: 1px;
   background-color: #000;
 }
-  .halfLine {
-    position: absolute;
-    bottom: 2rpx;
-    left: 50%;
-    width: 120rpx;
-    height: 1px;
-    background-color: #000;
-  }
+
   .quarter{
     position: absolute;
     bottom: -4rpx;
-    left: 50%;
-    transform: translateX(-50%);
+    left: 0;
     width: 20rpx;
     height: 1px;
     background-color: #000;
   }
-  .quarterLine {
+  .quarter-start {
     position: absolute;
     bottom: -4rpx;
-    left: 50%;
-    width: 120rpx;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background-color: #000;
+  }
+  .quarter-end {
+    position: absolute;
+    bottom: -4rpx;
+    left: 0;
+    width: 20rpx;
     height: 1px;
     background-color: #000;
   }

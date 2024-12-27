@@ -1,20 +1,26 @@
 <wxs src="./util.wxs" module="util" />
 
 <view class="score-container">
-  <view wx:for="{{scores}}" wx:key="key" class="note" style="width: {{util.getWidth(item)}}rpx;">
+  <view wx:for="{{scores}}" wx:key="key" class="score" style="width: {{util.getWidth(item)}}rpx;">
     <fingering note="{{item.note}}" key="score{{item.key}}" />
-    <view class="note {{util.getScale(item.note)}} linking-{{item.linking}}">{{util.getNote(item.note)}}</view>
+    <view class="note-container">
+      <view class="note {{util.getScale(item.note)}} {{item.linkStart ? 'linking-start' : ''}} {{item.linkEnd ? 'linking-end' : ''}} {{item.linkMiddle ? 'linking-middle' : ''}}"
+      >{{util.getNote(item.note)}}</view>
+      <view class="score-right">
+        <view wx:if="{{item.extend}}" class="extend"></view>
+      </view>
+    </view>
     
 
-    <view class="score-right"></view>
     <view wx:if="{{item.sectionStart}}" class="section-start"></view>
-    <view wx:if="{{item.extend}}" class="extend"></view>
-    <view wx:if="{{item.half}}" class="half"></view>
-    <view wx:if="{{item.halfStart}}" class="half-start"></view>
-    <view wx:if="{{item.halfEnd}}" class="half-end"></view>
+    <view wx:if="{{item.half || item.quarter}}" class="half"></view>
+    <view wx:if="{{item.halfStart || item.quarterStart}}" class="half-start"></view>
+    <view wx:if="{{item.halfMiddle || item.quarterMiddle}}" class="half-middle"></view>
+    <view wx:if="{{item.halfEnd || item.quarterEnd}}" class="half-end"></view>
     <view wx:if="{{item.quarter}}" class="quarter"></view>
-    <view wx:if="{{(item.half || item.quarter) && (beat[scoreIndex + 1].half || beat[scoreIndex + 1].quarter)}}" class="halfLine"></view>
-    <view wx:if="{{(item.quarter) && (beat[scoreIndex + 1].quarter)}}" class="quarterLine"></view>
+    <view wx:if="{{item.quarterStart}}" class="quarter-start"></view>
+    <view wx:if="{{item.quarterMiddle}}" class="quarter-middle"></view>
+    <view wx:if="{{item.quarterEnd}}" class="quarter-end"></view>
     <view class="score-bottom"></view>
 
   </view>
