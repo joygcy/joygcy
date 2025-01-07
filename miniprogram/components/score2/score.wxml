@@ -1,27 +1,36 @@
 <wxs src="./util.wxs" module="util" />
 
-<view class="score-container">
-  <view wx:for="{{scores}}" wx:key="key" class="score" style="width: {{util.getWidth(item)}}rpx;">
-    <fingering note="{{item.note}}" key="score{{item.key}}" />
-    <view class="note-container">
-      <view class="note {{util.getScale(item.note)}} {{item.linkStart ? 'linking-start' : ''}} {{item.linkEnd ? 'linking-end' : ''}} {{item.linkMiddle ? 'linking-middle' : ''}}"
-      >{{util.getNote(item.note)}}</view>
-      <view class="score-right">
-        <view wx:if="{{item.extend}}" class="extend"></view>
+<scroll-view class='score-container' scroll-x enable-flex style="flex-direction: row;">
+
+  <view class="beat-container" animation="{{animationData}}">
+    <view id="note{{item.key}}"
+      wx:for="{{scores}}" 
+      wx:key="key" 
+      class="score {{currentKey === item.key ? 'score-current' : ''}}" 
+      style="width: {{util.getWidth(item)}}rpx;"
+    >
+      <fingering note="{{item.note}}" key="score{{item.key}}" />
+      <view class="note-container">
+        <view class="note {{util.getScale(item.note)}} {{item.linkStart ? 'linking-start' : ''}} {{item.linkEnd ? 'linking-end' : ''}} {{item.linkMiddle ? 'linking-middle' : ''}}"
+        >{{util.getNote(item.note)}}</view>
+        <view class="score-right">
+          <view wx:if="{{item.extend}}" class="extend"></view>
+        </view>
       </view>
+      
+
+      <view wx:if="{{item.sectionStart}}" class="section-start"></view>
+      <view wx:if="{{item.half || item.quarter}}" class="half"></view>
+      <view wx:if="{{item.halfStart || item.quarterStart}}" class="half-start"></view>
+      <view wx:if="{{item.halfMiddle || item.quarterMiddle}}" class="half-middle"></view>
+      <view wx:if="{{item.halfEnd || item.quarterEnd}}" class="half-end"></view>
+      <view wx:if="{{item.quarter}}" class="quarter"></view>
+      <view wx:if="{{item.quarterStart}}" class="quarter-start"></view>
+      <view wx:if="{{item.quarterMiddle}}" class="quarter-middle"></view>
+      <view wx:if="{{item.quarterEnd}}" class="quarter-end"></view>
+      <view class="score-bottom"></view>
+
     </view>
-    
-
-    <view wx:if="{{item.sectionStart}}" class="section-start"></view>
-    <view wx:if="{{item.half || item.quarter}}" class="half"></view>
-    <view wx:if="{{item.halfStart || item.quarterStart}}" class="half-start"></view>
-    <view wx:if="{{item.halfMiddle || item.quarterMiddle}}" class="half-middle"></view>
-    <view wx:if="{{item.halfEnd || item.quarterEnd}}" class="half-end"></view>
-    <view wx:if="{{item.quarter}}" class="quarter"></view>
-    <view wx:if="{{item.quarterStart}}" class="quarter-start"></view>
-    <view wx:if="{{item.quarterMiddle}}" class="quarter-middle"></view>
-    <view wx:if="{{item.quarterEnd}}" class="quarter-end"></view>
-    <view class="score-bottom"></view>
-
   </view>
-</view>
+  <view class="line"></view>
+</scroll-view>

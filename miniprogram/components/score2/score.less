@@ -1,21 +1,39 @@
 /* pages/record/index.wxss */
 
 .score-container {
+  position: relative;
+  .line {
+    position: absolute;
+    top: -4rpx;
+    bottom: 0;
+    left: 0;
+    width: 4px;
+    background-color: red;
+}
+
+}
+.beat-container {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  width: max-content;
+  // position: relative;
+  // right: 100%;
+  // transform: translateX(-100%);
 }
 
 .score {
   position: relative;
   text-align: center;
-  background-color: pink;
+  // background-color: gray;
   margin-bottom: 20rpx;
 
   display: flex;
   flex-direction: column;
   justify-content: start;
   align-items: start;
+}
+
+.score-current {
+  background-color: pink;
 }
 
 .score-left,
