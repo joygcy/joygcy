@@ -38,6 +38,27 @@ Component({
       if(!toneF[this.properties.note]) {
         this.setData({ showFingerImg: false });
       } else {
+        // 已经有图片，不另外生成了
+        try {
+          var value = wx.getStorageSync(`finger:${this.properties.tone}:${this.properties.note}`)
+          if (value) {
+            this.setData({ imageUrl: value})
+          } else {
+          this.createImage();
+
+          }
+        } catch (e) {
+          // Do something when catch error
+          this.createImage();
+        }
+      }
+    }
+  },
+  /**
+   * 组件的方法列表
+   */
+  methods: {
+    createImage() {
         // 通过 SelectorQuery 获取 Canvas 节点
         this.createSelectorQuery()
           .select('#' + this.properties.key)
@@ -46,13 +67,8 @@ Component({
             size: true,
           })
           .exec(this.init.bind(this))
-      }
-    }
-  },
-  /**
-   * 组件的方法列表
-   */
-  methods: {
+
+    },
     init(res) {
       const width = res[0].width
       const height = res[0].height
@@ -73,18 +89,13 @@ Component({
         height,
         canvas: canvas,
         success: (res) => {
-          console.log(res.tempFilePath)
-          console.log('===== ~ res.tempFilePath:', res.tempFilePath);
           this.setData({ imageUrl: res.tempFilePath})
+          wx.setStorage({
+            key:`finger:${this.properties.tone}:${this.properties.note}`,
+            data:res.tempFilePath
+          })
         },
-        complete: (res) => {
-          console.log('===== ~ complete:', res);
-          
-        }
-      }, this)
-      // setTimeout(() => {
-          
-      //   }, 5000);
+      }, this);
     },
   
     render(canvas, ctx) {

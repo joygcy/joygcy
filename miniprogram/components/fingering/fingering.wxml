@@ -5,9 +5,9 @@
     wx:if="{{!imageUrl}}"
     type="2d"
     id="{{key}}"
-    style="width: 104rpx; height: 72rpx;"
+    style="width: 104rpx; height: 72rpx; visibility: hidden;"
   ></canvas>
-<image wx:else class="fingering-img" src="{{imageUrl}}" />
+  <image class="fingering-img" src="{{imageUrl}}" />
 
 </block>
 </view>
