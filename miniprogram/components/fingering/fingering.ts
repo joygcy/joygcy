@@ -46,8 +46,8 @@ Component({
             size: true,
           })
           .exec(this.init.bind(this))
-        }
       }
+    }
   },
   /**
    * 组件的方法列表
@@ -65,6 +65,26 @@ Component({
       canvas.height = height * dpr
       ctx.scale(dpr, dpr)
       this.render(canvas, ctx)
+      
+      wx.canvasToTempFilePath({
+        x: 0,
+        y: 0,
+        width,
+        height,
+        canvas: canvas,
+        success: (res) => {
+          console.log(res.tempFilePath)
+          console.log('===== ~ res.tempFilePath:', res.tempFilePath);
+          this.setData({ imageUrl: res.tempFilePath})
+        },
+        complete: (res) => {
+          console.log('===== ~ complete:', res);
+          
+        }
+      }, this)
+      // setTimeout(() => {
+          
+      //   }, 5000);
     },
   
     render(canvas, ctx) {

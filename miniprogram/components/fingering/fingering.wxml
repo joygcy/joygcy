@@ -1,8 +1,13 @@
 <view class="fingering-container">
+<block wx:if="{{showFingerImg}}">
+
   <canvas
-    wx:if="{{showFingerImg}}"
+    wx:if="{{!imageUrl}}"
     type="2d"
     id="{{key}}"
     style="width: 104rpx; height: 72rpx;"
   ></canvas>
+<image wx:else class="fingering-img" src="{{imageUrl}}" />
+
+</block>
 </view>
