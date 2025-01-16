@@ -1,66 +1,5 @@
 import { IScore } from "../../common/interface/score";
 
-// 谱子
-const A = [
-  [['6 half linkStart', '1 half linkEnd'], ['2 quarter linkStart', '3 quarter linkMiddle', '4 half linkEnd']],
-  [['3 linkStart'], ['- linkMiddle']],
-  [['3 linkEnd'], ['3 half', '5 half']],
-  [['6 extend'], ['5 half']],
-  [['6'], ['-6 half', '3 half']],
-  [['2 extend'], ['1 half']],
-  [['2'], ['3']],
-  [['-5 extend linkStart'], ['-6 half linkEnd']],
-  [['-7 half linkStart', '3 linkEnd', '-6 half']],
-  [['-6 half linkStart', '1 extend linkMiddle']],
-  [['1 linkEnd'], ['-']],
-];
-const B = [
-  [['0 half', '5 half'], ['5 half', '6 half']],
-  [['+1 half', '7'], ['6 quarter linkStart', '5 quarter linkEnd']],
-  [['6 linkStart'], ['- linkMiddle']],
-  [['6 linkEnd'], ['-']],
-  [['0 half', '5 half'], ['5 half', '6 half']],
-  [['+1 half', '7'], ['6 quarter linkStart', '5 quarter linkEnd']],
-  [['3 linkStart'], ['- linkMiddle']],
-  [['3 linkEnd'], ['-5 half', '-6 half']],
-  [['1 extend'], ['2 half']],
-  [['3 half linkStart', '-7 half linkMiddle'], ['-6 quarter linkMiddle', '-7 quarter linkMiddle', '-5 half linkEnd']],
-  [['-6 linkStart'], ['- linkMiddle']],
-  [['-6 linkEnd'], ['1 half', '2 half']],
-  [['3 extend', '5 half']],
-  [['6 half', '1 half'], ['2 quarter linkStart', '3 quarter linkEnd', '4 half']],
-  [['3 linkStart'], ['- linkMiddle']],
-  [['3 linkEnd'], ['3 half linkStart', '5 half linkEnd']],
-  [['6 extend linkStart'], ['5 half linkEnd']],
-  [['6'], ['-6 half linkStart', '3 half linkEnd']],
-  [['2 extend linkStart', '1 half linkEnd']],
-  [['2'], ['3']],
-  [['-5 extend', '-6 half']],
-  [['-7 half linkStart', '3 linkEnd', '-6 half']],
-];
-const C = [
-  [['-6 half linkStart', '1 extend linkMiddle']],
-  [['1 linkEnd'], ['-']],
-];
-
-const D = [
-  [['-6 half linkStart', '1 extend linkMiddle']],
-  [['1 linkEnd'], ['3']],
-  [['-5 extend'], ['-6 half']],
-  [['-7 half linkStart', '3 linkEnd'], ['-6 half']],
-  [['-6 half linkStart', '1 extend linkMiddle']],
-  [['1 linkMiddle'], ['- linkMiddle']],
-  [['1 linkMiddle'], ['- linkMiddle']],
-  [['1 linkEnd'], ['-']],
-]
-
-export const sectionStringArray = [
-  { key: 'A', sections: A },
-  { key: 'B', sections: B },
-  { key: 'C', sections: C },
-  { key: 'D', sections: D },
-];
-
 export const paragraphs = {
   A: ['-5 halfStart', '-6 halfEnd', '1 extend sectionStart', '2 half',
       '3 halfStart extend linkStart sectionStart', '-7 halfEnd quarter linkEnd', '-6 quarterStart linkStart', '-7 quarterEnd linkMiddle halfMiddle', '-5 halfEnd linkEnd',
@@ -79,10 +18,12 @@ export const paragraphs = {
       '1 linkEnd sectionStart', '-',
   ],
   B: [
+    '0 sectionStart half',
     '0 halfStart sectionStart', '5 halfEnd', '5 halfStart', '6 halfEnd',
     '+1 half sectionStart', '7', '6 quarterStart linkStart', '5 quarterEnd linkEnd',
     '6 linkStart sectionStart', '- linkMiddle',
     '6 linkEnd sectionStart', '-',
+    '0 sectionStart half',
     '0 halfStart sectionStart', '5 halfEnd', '5 halfStart', '6 halfEnd',
     '+1 half sectionStart', '7', '6 quarterStart linkStart', '5 quarterEnd linkEnd',
     '3 linkStart sectionStart', '- linkMiddle',
@@ -120,22 +61,42 @@ export const paragraphs = {
 
 // 演奏顺序
 export const scorePlayOrder = [
-  'music1', 'A', 'B', 'C', 'music2', 'A', 'B', 'C', 'B', 'D',
+  'music1', 'A', 'B', 'C', 'B', 'D',
 ]
 // 间奏时长
 export const musicInfo = {
-  music1: {
-    head: 4,
-    foot: 1,
-  },
-  music2: 8,
+  music1: [
+    '0 sectionStart',
+    '0 sectionStart', '0',
+    '0 sectionStart', '0',
+    '0 sectionStart', '0',
+    '0 sectionStart', '0',
+    '0 sectionStart', '0',
+    '0 sectionStart', '0',
+    '0 sectionStart', '0',
+    '0 sectionStart', '0',
+    '0 sectionStart', '0',
+    '0 sectionStart', '0',
+    '0 sectionStart', '0',
+    '0 sectionStart', '0',
+    '0 sectionStart', '0',
+    '0 sectionStart', '0',
+    '0 sectionStart', '0',
+    '0 sectionStart', '0',
+    '0 sectionStart', '0',
+    '0 sectionStart',
+  ],
+  music2: [
+    '0 sectionStart half',
+  ],
 }
 // 一节拍=多少ms
 export const beatTime = 833;
 export const beatNumPerSection = 2;
 // 伴奏地址
-export const accompanyUrl = 'https://res.wx.qq.com/voice/getvoice?mediaid=MzI1MDUxMDQwMV8yMjQ3NTAxMDA0'; 
-
+// export const accompanyUrl = 'https://res.wx.qq.com/voice/getvoice?mediaid=MzI1MDUxMDQwMV8yMjQ3NTAxMDA0'; 
+// 李玉刚版，有声音的
+export const accompanyUrl = 'https://sx-sycdn.kuwo.cn/4da65fec9d15df642948b8ab0a3c2bb0/6788f37c/resource/n2/53/25/2827286582.mp3';
 // 曲子名
 export const name = '女儿情';
 

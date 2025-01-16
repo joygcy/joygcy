@@ -91,7 +91,7 @@ export default class Score {
   private getScore(key:string): IScore[] {
     let result: IScore[] = [];
     if (!key) return result;
-    let play = this.paragraphs[key];
+    let play = this.paragraphs[key] || this.musicInfo[key];
     if (!play || play.length === 0) return result;
     
     for (let index = 0; index < play.length; index++) {
@@ -115,7 +115,7 @@ export default class Score {
       const play = this.playOrder[playIndex];
       // music开头代表伴奏
       if (play.startsWith('music')) {
-        result = result.concat(this.getMusicScores(play))
+        result = result.concat(this.getScore(play))
       } else {
         result = result.concat(this.getScore(play))
       }

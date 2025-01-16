@@ -1,6 +1,6 @@
 import Score from "../../utils/score"
 import { IScore } from "../../common/interface/score";
-import { beatNumPerSection, beatTime, musicInfo, scorePlayOrder, paragraphs, name } from "./data";
+import { beatNumPerSection, beatTime, musicInfo, scorePlayOrder, paragraphs, name, accompanyUrl } from "./data";
 
 Page({
   backgroundAudioManager: wx.getBackgroundAudioManager(),
@@ -14,6 +14,7 @@ Page({
   data: {
     state: 'free', // free-无录音；busy-正在录音；
     tempFilePath: '', // 录音后的文件
+    animationData: {},
     scores: [] as IScore[],
 
     activeKey: null as number | null,
@@ -53,6 +54,11 @@ Page({
     console.log('===== ~  myScore：', myScore.scores);
     this.setData({scores: myScore.scores})
 
+
+    this.animation = wx.createAnimation({
+      duration: beatTime,
+      timingFunction: 'linear'
+    });
   },
   initPage() {
     wx.setNavigationBarTitle({
@@ -123,63 +129,23 @@ Page({
     });
   },
 
-  startPlaySections(i= 0) {
-    const playOrder = this.data.playOrder;
-    const current = playOrder[i++];
-    console.log('===== ~  startPlaySections： time[i]：',current);
-
-    this.setData({
-      showInterlude: false,
-    });
+  startPlaySections() {
+    let i = 1;
     clearInterval(this.interval);
-    
-    if (typeof current.key === 'string') {
-      this.setData({
-        showInterlude: true,
-      });
-      this.showMusicLoading(current.time);
-    } else {
-      this.setData({ activeKey: current.key });
-      wx.pageScrollTo({
-        selector: `.section-container >>> #score${current.key}`,
-        offsetTop: -200,
-        duration: 200
-      });
-    }
-
-    this.timeout = setTimeout(() => {
-      if (playOrder[i]) {
-        this.startPlaySections(i)
-      } else {
-        this.stopPlaySections();
-      }
-    }, current.time);
-  },
-
-  // 间奏读秒播放
-  showMusicLoading(time: number) {
-    let i = 0;
-    const interludeRest = time/1000 - i++;
-    this.setData({
-      interludeRest,
-    })
     this.interval = setInterval(() => {
-      console.log('===== ~  interval：');
-      const interludeRest = time/1000 - i++;
+      this.animation.translateX(`${-400 * i++}rpx`).step();
       this.setData({
-        interludeRest,
-      })
-    }, 1000);
+        animationData: this.animation.export()
+    });
+    }, beatTime);
+    
   },
+
 
   stopPlaySections() {
-    console.log('===== ~  stopPlaySections',  this.timeout);
-    clearTimeout(this.timeout);
-    this.setData({ activeKey: null })
-    wx.pageScrollTo({
-      selector: `.section-container >>> #score1`,
-      offsetTop: -200,
-      duration: 200
-    });
+    console.log('===== ~  stopPlaySections',  this.interval);
+    clearInterval(this.interval);
+      this.animation.translateX(0).step();
+      this.setData({ animationData: this.animation.export() })
   },
 })
