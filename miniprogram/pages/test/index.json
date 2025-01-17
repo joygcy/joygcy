@@ -2,6 +2,6 @@
   "navigationBarTitleText": "test",
   "usingComponents": {
     "fingering": "../../components/fingering/fingering",
-    "score": "../../components/score2/score"
+    "score": "../../components/score/score"
   }
 }
