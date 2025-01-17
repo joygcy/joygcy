@@ -67,12 +67,9 @@ Page({
   },
 
   startPlay() {
-      console.log('startPlay', this.backgroundAudioManager.src);
     if(!this.backgroundAudioManager.src) {
-      console.log('startPlay2', this.backgroundAudioManager.src);
       this.backgroundAudioManager.src = accompanyUrl;
     } else {
-      console.log('startPlay3', this.backgroundAudioManager.src);
       this.backgroundAudioManager.play() // 播放
     }
   },

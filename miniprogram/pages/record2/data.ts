@@ -61,12 +61,11 @@ export const paragraphs = {
 
 // 演奏顺序
 export const scorePlayOrder = [
-  'music1', 'A', 'B', 'C', 'B', 'D',
+  'music1', 'A', 'B', 'C', 'music1', 'A', 'B', 'C', 'B', 'D',
 ]
 // 间奏时长
 export const musicInfo = {
   music1: [
-    '0 sectionStart',
     '0 sectionStart', '0',
     '0 sectionStart', '0',
     '0 sectionStart', '0',
@@ -87,16 +86,30 @@ export const musicInfo = {
     '0 sectionStart',
   ],
   music2: [
-    '0 sectionStart half',
+    '0 sectionStart', '0',
+    '0 sectionStart', '0',
+    '0 sectionStart', '0',
+    '0 sectionStart', '0',
+    '0 sectionStart', '0',
+    '0 sectionStart', '0',
+    '0 sectionStart', '0',
+    '0 sectionStart', '0',
+    '0 sectionStart', '0',
+    '0 sectionStart', '0',
+    '0 sectionStart', '0',
+    '0 sectionStart', '0',
+    '0 sectionStart', '0',
+    '0 sectionStart', '0',
+    '0 sectionStart', '0',
+    '0 sectionStart', '0',
+    '0 sectionStart',
   ],
 }
 // 一节拍=多少ms
-export const beatTime = 833;
+export const beatTime = 60 * 1000 / 72;
 export const beatNumPerSection = 2;
 // 伴奏地址
-// export const accompanyUrl = 'https://res.wx.qq.com/voice/getvoice?mediaid=MzI1MDUxMDQwMV8yMjQ3NTAxMDA0'; 
-// 李玉刚版，有声音的
-export const accompanyUrl = 'https://sx-sycdn.kuwo.cn/4da65fec9d15df642948b8ab0a3c2bb0/6788f37c/resource/n2/53/25/2827286582.mp3';
+export const accompanyUrl = 'https://res.wx.qq.com/voice/getvoice?mediaid=MzI1MDUxMDQwMV8yMjQ3NTAxMDA0'; 
 // 曲子名
 export const name = '女儿情';
 
