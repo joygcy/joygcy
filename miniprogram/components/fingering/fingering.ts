@@ -22,6 +22,10 @@ Component({
     key: {
       type: String,
       value: 'score'
+    },
+    finterWidth: {
+      type: Number,
+      value: 100,
     }
   },
 

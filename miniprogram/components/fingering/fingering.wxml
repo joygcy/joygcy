@@ -7,7 +7,7 @@
     id="{{key}}"
     style="width: 104rpx; height: 72rpx; visibility: hidden;"
   ></canvas>
-  <image class="fingering-img" src="{{imageUrl}}" />
+  <image class="fingering-img" src="{{imageUrl}}" style="width: {{finterWidth}}rpx; height: {{finterWidth * 70 / 100}}rpx" />
 
 </block>
 </view>

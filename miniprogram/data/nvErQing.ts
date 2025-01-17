@@ -16,12 +16,10 @@ export const paragraphs = {
       '1 linkEnd sectionStart', '-',
   ],
   B: [
-    '0 sectionStart half',
     '0 halfStart sectionStart', '5 halfEnd', '5 halfStart', '6 halfEnd',
     '+1 half sectionStart', '7', '6 quarterStart linkStart', '5 quarterEnd linkEnd',
     '6 linkStart sectionStart', '- linkMiddle',
     '6 linkEnd sectionStart', '-',
-    '0 sectionStart half',
     '0 halfStart sectionStart', '5 halfEnd', '5 halfStart', '6 halfEnd',
     '+1 half sectionStart', '7', '6 quarterStart linkStart', '5 quarterEnd linkEnd',
     '3 linkStart sectionStart', '- linkMiddle',
@@ -81,6 +79,7 @@ export const musicInfo = {
     '0 sectionStart', '0',
     '0 sectionStart', '0',
     '0 sectionStart', '0',
+    '0 sectionStart', '0',
     '0 sectionStart',
   ],
   music2: [
@@ -109,3 +108,4 @@ export const beatNumPerSection = 2;
 export const accompanyUrl = 'https://res.wx.qq.com/voice/getvoice?mediaid=MzI1MDUxMDQwMV8yMjQ3NTAxMDA0'; 
 // 曲子名
 export const name = '女儿情';
+export const finterWidth = 72; // 指法宽度，太宽了走太快看不清曲谱，太窄了4分音符装不下

@@ -8,7 +8,7 @@
   </view>
 
   <view class="section-container">
-    <score scores="{{scores}}" animationData="{{animationData}}" />
+    <score scores="{{scores}}" animationData="{{animationData}}" finterWidth="{{finterWidth}}" />
   </view>
 </view>
 

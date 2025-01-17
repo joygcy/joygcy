@@ -1,6 +1,6 @@
 import Score from "../../utils/score"
 import { IScore } from "../../common/interface/score";
-import { beatNumPerSection, beatTime, musicInfo, scorePlayOrder, paragraphs, name, accompanyUrl } from "../../data/nvErQing";
+import { beatNumPerSection, beatTime, musicInfo, scorePlayOrder, paragraphs, name, accompanyUrl, finterWidth } from "../../data/nvErQing";
 
 Page({
   backgroundAudioManager: wx.getBackgroundAudioManager(),
@@ -23,6 +23,7 @@ Page({
     // 以下是应该从服务端获取的
     sections: [] as any,
     time: [],
+    finterWidth,
   },
 
   /**
@@ -140,7 +141,7 @@ Page({
     let i = 1;
     clearInterval(this.interval);
     this.interval = setInterval(() => {
-      this.animation.translateX(`${-400 * i++}rpx`).step();
+      this.animation.translateX(`${-(this.data.finterWidth * 4) * i++}rpx`).step();
       this.setData({
         animationData: this.animation.export()
     });

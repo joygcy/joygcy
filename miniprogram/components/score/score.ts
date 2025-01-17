@@ -22,6 +22,10 @@ Component({
       type: Object,
       value: {}
     },
+    finterWidth: {
+      type: Number,
+      value: 100,
+    }
   },
 
   /**

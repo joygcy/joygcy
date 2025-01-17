@@ -7,9 +7,9 @@
       wx:for="{{scores}}" 
       wx:key="key" 
       class="score {{currentKey === item.key ? 'score-current' : ''}}" 
-      style="width: {{util.getWidth(item)}}rpx;"
+      style="width: {{util.getWidth(item, finterWidth)}}rpx;"
     >
-      <fingering note="{{item.note}}" key="score{{item.key}}" />
+      <fingering note="{{item.note}}" key="score{{item.key}}" finterWidth="{{finterWidth}}" />
       <view class="note-container">
         <view class="note {{util.getScale(item.note)}} {{item.linkStart ? 'linking-start' : ''}} {{item.linkEnd ? 'linking-end' : ''}} {{item.linkMiddle ? 'linking-middle' : ''}}"
         >{{util.getNote(item.note)}}</view>
