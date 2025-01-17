@@ -1,6 +1,0 @@
-{
-  "component": true,
-  "usingComponents": {
-    "fingering": "../../components/fingering/fingering"
-  }
-}

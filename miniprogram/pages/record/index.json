@@ -1,7 +1,0 @@
-{
-  "navigationBarTitleText": "录制",
-  "usingComponents": {
-    "cax":"../../components/cax/cax",
-    "score": "../../components/score/score"
-  }
-}
