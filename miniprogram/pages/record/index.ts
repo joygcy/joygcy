@@ -5,6 +5,9 @@ import { beatNumPerSection, beatTime, musicInfo, scorePlayOrder, paragraphs, nam
 Page({
   backgroundAudioManager: wx.getBackgroundAudioManager(),
   recorderManager: wx.getRecorderManager(),
+  innerAudioContext: wx.createInnerAudioContext({
+    useWebAudioImplement: false // 是否使用 WebAudio 作为底层音频驱动，默认关闭。对于短音频、播放频繁的音频建议开启此选项，开启后将获得更优的性能表现。由于开启此选项后也会带来一定的内存增长，因此对于长音频建议关闭此选项
+  }),
   animation: {},
   interval: 0,
   showInterlude: false, // 是否播放间奏
@@ -34,6 +37,10 @@ Page({
     this.initBackgroundAudio();
     this.initRecord();
   },
+  onUnload() {
+    this.destoryRecord();
+  },
+
   // 初始化页面
   initPage() {
     wx.setNavigationBarTitle({
@@ -67,6 +74,7 @@ Page({
       this.setData({
         tempFilePath,
       })
+      this.innerAudioContext.src = tempFilePath;
     })
   },
   // 准备播放背景
@@ -155,5 +163,23 @@ Page({
     clearInterval(this.interval);
       this.animation.translateX(0).step();
       this.setData({ animationData: this.animation.export() })
+  },
+
+  playRecord() {
+    if (this.innerAudioContext.paused) {
+
+      this.innerAudioContext.play() // 播放
+    } else {
+this.innerAudioContext.stop() // 停止
+
+    }
+
+//     innerAudioContext.pause() // 暂停
+
+
+
+  },
+  destoryRecord() {
+    this.innerAudioContext.destroy() // 释放音频资源
   },
 })
