@@ -1,6 +1,6 @@
 import Score from "../../utils/score"
 import { IScore } from "../../common/interface/score";
-import { beatNumPerSection, beatTime, musicInfo, scorePlayOrder, paragraphs, name, accompanyUrl } from "./data";
+import { beatNumPerSection, beatTime, musicInfo, scorePlayOrder, paragraphs, name, accompanyUrl } from "../../data/nvErQing";
 
 Page({
   backgroundAudioManager: wx.getBackgroundAudioManager(),
