@@ -5,7 +5,8 @@ import { beatNumPerSection, beatTime, musicInfo, scorePlayOrder, paragraphs, nam
 Page({
   backgroundAudioManager: wx.getBackgroundAudioManager(),
   recorderManager: wx.getRecorderManager(),
-  timeout: 0,
+  animation: {},
+  interval: 0,
   showInterlude: false, // 是否播放间奏
   interludeRest: 0, // 间奏还剩多少秒
   /**
@@ -29,21 +30,14 @@ Page({
    */
   onLoad() {
     this.initPage();
-    this.backgroundAudioManager = wx.getBackgroundAudioManager();
-    this.backgroundAudioManager.title = '背景音乐';
-    this.backgroundAudioManager.epname = '示例';
-    this.backgroundAudioManager.singer = '未知';
-
-    this.recorderManager = wx.getRecorderManager();
-
-    this.recorderManager.onStop((res) => {
-      console.log('recorder stop', res);
-      const { tempFilePath } = res
-      this.setData({
-        tempFilePath,
-      })
-    })
-
+    this.initBackgroundAudio();
+    this.initRecord();
+  },
+  // 初始化页面
+  initPage() {
+    wx.setNavigationBarTitle({
+      title: `${name}-录制`,
+    });
     const myScore = new Score({
       playOrder: scorePlayOrder,
       beatTime: beatTime,
@@ -54,15 +48,38 @@ Page({
     console.log('===== ~  myScore：', myScore.scores);
     this.setData({scores: myScore.scores})
 
-
     this.animation = wx.createAnimation({
       duration: beatTime,
       timingFunction: 'linear'
     });
   },
-  initPage() {
-    wx.setNavigationBarTitle({
-      title: `${name}-录制`,
+
+  // 准备录音器
+  initRecord() {
+    this.recorderManager = wx.getRecorderManager();
+    this.recorderManager.onStart(() => {
+      this.startPlay();
+    });
+    this.recorderManager.onStop((res) => {
+      console.log('recorder stop', res);
+      const { tempFilePath } = res
+      this.setData({
+        tempFilePath,
+      })
+    })
+  },
+  // 准备播放背景
+  initBackgroundAudio() {
+    this.backgroundAudioManager = wx.getBackgroundAudioManager();
+    this.backgroundAudioManager.title = '背景音乐';
+    this.backgroundAudioManager.epname = '示例';
+    this.backgroundAudioManager.singer = '未知';
+    this.backgroundAudioManager.onPlay((e) => {
+      console.log('===== ~ backgroundAudioManager:onPlay', e);
+      this.startPlaySections();
+    })
+    this.backgroundAudioManager.onPause(() => {
+      this.stopRecord();
     })
   },
 
@@ -73,12 +90,9 @@ Page({
       this.backgroundAudioManager.play() // 播放
     }
   },
-  pausePlay() {
-    this.backgroundAudioManager.pause() // 暂停
-  },
   stopPlay() {
+    this.backgroundAudioManager.pause() // 暂停
     this.backgroundAudioManager.seek(0) // 停止
-    this.pausePlay();
   },
 
   startRecord() {
@@ -109,9 +123,6 @@ Page({
 
   startPlayRecord() {
     this.startRecord();
-    this.startPlay();
-
-    this.startPlaySections();
     this.setData({
       state: 'busy',
     });
@@ -120,7 +131,6 @@ Page({
   stopPlayRecord() {
     this.stopPlaySections();
     this.stopPlay();
-    this.stopRecord();
     this.setData({
       state: 'free',
     });

@@ -101,7 +101,6 @@ export const musicInfo = {
     '0 sectionStart', '0',
     '0 sectionStart', '0',
     '0 sectionStart', '0',
-    '0 sectionStart', '0',
     '0 sectionStart',
   ],
 }
