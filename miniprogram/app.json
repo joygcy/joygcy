@@ -1,12 +1,13 @@
 {
   "pages": [
+    "pages/index/index",
     "pages/record/index",
     "pages/test/index"
   ],
   "window": {
     "navigationBarTextStyle": "black",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "录制"
+    "navigationBarTitleText": "我的小程序"
   },
   "style": "v2",
   "rendererOptions": {

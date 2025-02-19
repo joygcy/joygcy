@@ -1,0 +1,12 @@
+<view class="container">
+  <view
+    wx:for="{{list}}"
+    wx:key="key" 
+    class="item" 
+    data-page="{{item.page}}"
+    bindtap="onJumpTo"
+  >  
+    <view >{{item.label}}</view> 
+    
+  </view>
+</view>
