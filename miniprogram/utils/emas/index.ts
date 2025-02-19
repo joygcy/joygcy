@@ -23,7 +23,7 @@ function handleResponse(res: any) {
 }
 
 export async function updateOne(collectionName: string, query: any, newVal:any) {
-  const res = mpserverless.db.collection(collectionName).updateOne(query, {
+  const res = await mpserverless.db.collection(collectionName).updateOne(query, {
     $set: newVal
   });
   return handleResponse(res);
