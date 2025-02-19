@@ -1,12 +1,15 @@
+import { queryList } from '../../utils/emas/things';
+
 Page({
   data: {
-    list: [
-      {
-        key: '1',
-        title: '喝奶茶、吃甜品',
-        description: '7天吃一次，吃过抵一顿正餐',
-      }
-    ],
+    list: [],
   },
-  onLoad() {},
+  onLoad() {
+    queryList().then((res) => {
+      console.log('===== ~ res:', res);
+      this.setData({
+        list: res,
+      });
+    });
+  },
 });

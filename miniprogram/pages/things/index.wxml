@@ -1,7 +1,7 @@
 <view class="container">
   <view
     wx:for="{{list}}"
-    wx:key="key"
+    wx:key="{{item._id}}"
     class="item"
   > 
     <view class="header">
