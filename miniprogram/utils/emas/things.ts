@@ -1,8 +1,20 @@
-import request from "./index";
-console.log('===== ~ request:', request);
+import moment from 'moment';
+import { request, updateOne } from "./index";
 
-// export const queryList = async () => mpserverless.function.invoke(
-//   'getThingsList', 
-// );
+moment.locale('zh-cn');
 
-export const queryList = () => request('things');
+function parseTime(timestamp) {
+  if (!timestamp) return '';
+  const mo = moment(timestamp);
+  return `${mo.format('YYYY-MM-DD')}(${mo.fromNow()})`
+}
+
+export const queryList = async () => {
+  const data = await request('things');
+  return data.map((item: any) => ({
+    ...item,
+    latestOperationTime: parseTime(item.latestOperationTime),
+  }));
+}
+
+export const updateThing = async (_id: string, newVal: any) => updateOne('things', { _id }, newVal);

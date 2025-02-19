@@ -3,10 +3,12 @@
     wx:for="{{list}}"
     wx:key="{{item._id}}"
     class="item"
+    bindtap="onUpdateOperationTime"
+    data-id="{{item._id}}"
   > 
     <view class="header">
       <view class="title">{{item.title}}</view>
-      <view class="date">{{item.date}}</view>
+      <view class="date">{{item.latestOperationTime || '尚未记录'}}</view>
     </view>
 
     <view class="content">

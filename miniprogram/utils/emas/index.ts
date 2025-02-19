@@ -1,3 +1,4 @@
+import { OSSUploadHeaders } from './../../../miniprogram_npm/@alicloud/mpserverless-sdk/esm/file/index.d';
 // app.js
 import MPServerless from '@alicloud/mpserverless-sdk';
 // AppID(小程序ID) wx3d216fe141150e70
@@ -14,10 +15,21 @@ mpserverless.user.authorize({
   authProvider: 'wechat_openapi',
 });
 
-export default async function request(collectionName: string) {
-  const res = await mpserverless.db.collection(collectionName).find();
+function handleResponse(res: any) {
   if (res.success) {
     return Promise.resolve(res.result);
   }
   return Promise.reject(res);
+}
+
+export async function updateOne(collectionName: string, query: any, newVal:any) {
+  const res = mpserverless.db.collection(collectionName).updateOne(query, {
+    $set: newVal
+  });
+  return handleResponse(res);
+}
+
+export async function request(collectionName: string) {
+  const res = await mpserverless.db.collection(collectionName).find();
+  return handleResponse(res);
 }
