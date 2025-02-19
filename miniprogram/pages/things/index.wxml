@@ -1,0 +1,16 @@
+<view class="container">
+  <view
+    wx:for="{{list}}"
+    wx:key="key"
+    class="item"
+  > 
+    <view class="header">
+      <view class="title">{{item.title}}</view>
+      <view class="date">{{item.date}}</view>
+    </view>
+
+    <view class="content">
+      {{item.description}}
+    </view>
+  </view>
+</view>

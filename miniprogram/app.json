@@ -2,7 +2,8 @@
   "pages": [
     "pages/index/index",
     "pages/record/index",
-    "pages/test/index"
+    "pages/test/index",
+    "pages/things/index"
   ],
   "window": {
     "navigationBarTextStyle": "black",
