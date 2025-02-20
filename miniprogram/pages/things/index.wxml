@@ -2,36 +2,13 @@
   <view class="button-container">
     <t-button theme="primary" bindtap="showCreatePop">新增事项</t-button>
   </view>
-  <view
+  <card
     wx:for="{{list}}"
     wx:key="_id"
-    class="item-container"
-    data-id="{{item._id}}"
-    data-item="{{item}}"
-    bindtouchstart="touchStart"
-    bindtouchmove="touchMove" 
-    bindtouchend="touchEnd"
-    bindtap="onJump2Detail"
-  > 
-    <view class="item">
-      <view class="header">
-        <view class="title">{{item.title}}</view>
-        <view class="date">{{item.latestOperationTime || '尚未记录'}}</view>
-      </view>
-
-      <view class="content">
-        {{item.description}}
-      </view>
-    </view>
-
-    <view class="menu-container {{showMenuId === item._id ? 'menu-show' : ''}}">
-      <view 
-        class="menu-item menu-record"
-        bindtap="onUpdateOperationTime"
-        data-id="{{item._id}}"
-      >打开</view>
-    </view>
-  </view>
+    info="{{item}}"
+    bind:click="onJump2Detail"
+    bind:update="loadData"
+  />
 </view>
 
 <!-- 空提示 -->

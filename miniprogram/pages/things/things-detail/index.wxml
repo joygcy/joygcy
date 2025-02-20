@@ -1,19 +1,8 @@
 <view class="page-container">
-  <view
-    class="item-container"
-  > 
-    <view class="item">
-      <view class="header">
-        <view class="title">{{dataSource.title}}</view>
-        <view class="date">{{dataSource.latestOperationTime || '尚未记录'}}</view>
-      </view>
-
-      <view class="content">
-        {{dataSource.description}}
-      </view>
-    </view>
-
-  </view>
+  <card
+    info="{{dataSource}}"
+    bind:update="loadData"
+  />
 
   <view class="divider-container">
     <view class="divider-title">打卡记录</view>

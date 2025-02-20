@@ -1,0 +1,26 @@
+  <view
+    class="item-container"
+    bindtouchstart="touchStart"
+    bindtouchmove="touchMove" 
+    bindtouchend="touchEnd"
+    catch:tap="onClick"
+  > 
+    <view class="item">
+      <view class="header">
+        <view class="title">{{info.title}}</view>
+        <view class="date">{{info.latestOperationTime || '尚未记录'}}</view>
+      </view>
+
+      <view class="content">
+        {{info.description}}
+      </view>
+    </view>
+
+    <view class="menu-container {{showMenu ? 'menu-show' : ''}}">
+      <view 
+        class="menu-item menu-record"
+        catch:tap="onUpdateOperationTime"
+        data-id="{{info._id}}"
+      >打卡</view>
+    </view>
+  </view>

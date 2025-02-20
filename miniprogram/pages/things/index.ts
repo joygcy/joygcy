@@ -12,6 +12,22 @@ Page({
     this.loadData();
   },
   loadData() {
+    // this.setData({
+    //   list: [
+    //     {
+    //       _id: "67b5624d3f1a473be222894a",
+    //       "title": "奶茶甜品来一份",
+    //       "description": "7天吃一次，吃过抵一顿正餐",
+    //       "latestOperationTime": 1739970392039
+    //     },
+    //     {
+    //       _id: "67b6a13409664cc2d439b943",
+    //       "title": "给跳跳剃毛",
+    //       "description": "暂定2周一次，14天"
+    //     }
+    //   ],
+    // });
+
     queryList().then((res) => {
       this.setData({
         list: res,
@@ -21,33 +37,7 @@ Page({
   showCreatePop() {
     this.setData({ visible: true });
   },
-  touchStart(e: any) {
-    this.touchStartX = e.changedTouches?.[0]?.clientX;
-  },
-  touchMove(e: any) {
 
-  },
-  touchEnd(e: any) {
-    const { id } = e.currentTarget.dataset;
-    this.touchEndX = e.changedTouches?.[0]?.clientX;
-    if (this.touchStartX && this.touchEndX) {
-      if (this.touchStartX - this.touchEndX > 200) {
-        this.setData({ showMenuId: id })
-      } else if (this.touchEndX - this.touchStartX > 200) {
-        this.setData({ showMenuId: '' })
-
-      }
-    }
-  },
-  onUpdateOperationTime(e: WechatMiniprogram.TapEvent) {
-    const { id } = e.currentTarget.dataset;
-    const newVal = {
-      latestOperationTime: new Date().getTime(),
-    };
-    updateThing(id, newVal).then(() => {
-      this.loadData();
-    });
-  },
   onCreate(e: { detail: { value: any; }; }) {
     const values = e.detail.value;
 
@@ -74,8 +64,8 @@ Page({
       this.setData({ visible: false });
     })
   },
-  onJump2Detail(e: WechatMiniprogram.TapEvent) {
-    const { item } = e.currentTarget.dataset;
+  onJump2Detail(e: any) {
+    const item = e.detail;
     wx.navigateTo({
       url: `/pages/things/things-detail/index?info=${JSON.stringify(item)}`,
     });

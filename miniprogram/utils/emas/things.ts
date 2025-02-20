@@ -3,7 +3,7 @@ import { request, updateOne, insertOne } from "./index";
 
 moment.locale('zh-cn');
 
-function parseTime(timestamp) {
+function parseTime(timestamp?: number) {
   if (!timestamp) return '';
   const mo = moment(timestamp);
   return `${mo.format('YYYY-MM-DD')}(${mo.fromNow()})`

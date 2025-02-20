@@ -10,11 +10,17 @@ Page({
     info: string;
   }) {
     console.log('===== ~ opt.info:', opt.info);
+
     try {
       this.setData({ dataSource: JSON.parse(opt.info) });
+      console.log('===== ~ dataSource:', JSON.parse(opt.info));
     } catch (error) {
+      console.log('===== ~ error:', error);
       
     }
+  },
+  loadData() {
+    
   },
   showPicker(e: WechatMiniprogram.TapEvent) {
     this.setData({
