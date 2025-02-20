@@ -1,2 +1,31 @@
-<t-cell title="标题" description="{{dataSource.title}}" />
-<t-cell title="描述" description="{{dataSource.description}}" />
+<view class="page-container">
+  <view
+    class="item-container"
+  > 
+    <view class="item">
+      <view class="header">
+        <view class="title">{{dataSource.title}}</view>
+        <view class="date">{{dataSource.latestOperationTime || '尚未记录'}}</view>
+      </view>
+
+      <view class="content">
+        {{dataSource.description}}
+      </view>
+    </view>
+
+  </view>
+
+  <view class="divider-container">
+    <view class="divider-title">打卡记录</view>
+    <t-button theme="primary" bindtap="showPicker">补打卡</t-button>
+  </view>
+</view>
+
+<t-date-time-picker
+  auto-close
+  title="选择日期"
+  visible="{{pickerVisible}}"
+  mode="second"
+  default-value="{{today}}"
+  bindchange="onConfirm"
+/>

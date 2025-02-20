@@ -77,7 +77,7 @@ Page({
   onJump2Detail(e: WechatMiniprogram.TapEvent) {
     const { item } = e.currentTarget.dataset;
     wx.navigateTo({
-      url: `/pages/things-detail/index?info=${JSON.stringify(item)}`,
+      url: `/pages/things/things-detail/index?info=${JSON.stringify(item)}`,
     });
   },
 });

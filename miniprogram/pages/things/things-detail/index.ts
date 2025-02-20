@@ -1,21 +1,39 @@
+import { updateThing } from '../../../utils/emas/things';
+
 Page({
   data: {
-    dataSource: {},
+    today: new Date().getTime(),
+    dataSource: {} as any,
+    pickerVisible: false,
   },
   onLoad(opt: {
     info: string;
   }) {
+    console.log('===== ~ opt.info:', opt.info);
     try {
-      const dataSource = JSON.parse(opt.info);
-      this.setData({ dataSource });
+      this.setData({ dataSource: JSON.parse(opt.info) });
     } catch (error) {
       
     }
   },
-  onJumpTo(e: WechatMiniprogram.TouchEvent) {
-    const { page } = e.currentTarget.dataset as { page: string };
-    wx.navigateTo({
-      url: page,
+  showPicker(e: WechatMiniprogram.TapEvent) {
+    this.setData({
+      mode: 'date',
+      pickerVisible: true,
     });
-  }
+  },
+  onConfirm(e: any) {
+    const { value } = e.detail;
+    console.log('===== ~ value:', value);
+    const dataSource = this.data.dataSource;
+    const newVal = {
+      latestOperationTime: new Date(value).getTime(),
+    };
+    updateThing(dataSource._id, newVal).then(() => {
+      this.setData({dataSource: {
+        ...dataSource,
+        ...newVal,
+      }});
+    });
+  },
 });
