@@ -49,7 +49,6 @@ Page({
     });
   },
   onCreate(e: { detail: { value: any; }; }) {
-    console.log('===== ~ e:', e);
     const values = e.detail.value;
 
     // 非空判断
@@ -74,5 +73,11 @@ Page({
       this.loadData();
       this.setData({ visible: false });
     })
+  },
+  onJump2Detail(e: WechatMiniprogram.TapEvent) {
+    const { item } = e.currentTarget.dataset;
+    wx.navigateTo({
+      url: `/pages/things-detail/index?info=${JSON.stringify(item)}`,
+    });
   },
 });

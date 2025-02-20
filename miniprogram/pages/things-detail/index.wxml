@@ -1,0 +1,2 @@
+<t-cell title="标题" description="{{dataSource.title}}" />
+<t-cell title="描述" description="{{dataSource.description}}" />
