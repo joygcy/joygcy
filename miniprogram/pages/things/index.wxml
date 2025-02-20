@@ -4,7 +4,7 @@
   </view>
   <view
     wx:for="{{list}}"
-    wx:key="{{item._id}}"
+    wx:key="_id"
     class="item-container"
     data-id="{{item._id}}"
     bindtouchstart="touchStart"
@@ -32,6 +32,8 @@
   </view>
 </view>
 
+<!-- 空提示 -->
+<t-empty wx:if="{{list.length === 0}}" icon="info-circle-filled" description="请先新增事项" />
 <!-- 新建 -->
 <t-popup
   visible="{{visible}}"

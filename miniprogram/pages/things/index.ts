@@ -9,7 +9,7 @@ Page({
     visible: false,
   },
   onLoad() {
-    // this.loadData();
+    this.loadData();
   },
   loadData() {
     queryList().then((res) => {
