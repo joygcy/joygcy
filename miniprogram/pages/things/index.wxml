@@ -1,4 +1,7 @@
 <view class="container">
+  <view class="button-container">
+    <t-button theme="primary" bindtap="showCreatePop">新增事项</t-button>
+  </view>
   <view
     wx:for="{{list}}"
     wx:key="{{item._id}}"
@@ -28,3 +31,19 @@
     </view>
   </view>
 </view>
+
+<!-- 新建 -->
+<t-popup
+  visible="{{visible}}"
+  bind:visible-change="onVisibleChange"
+  placement="top"
+>
+  <form class="form" bindsubmit="onCreate">
+    <t-input label="标题" name="title" placeholder="请输入事项标题" />
+    <t-textarea label="描述" name="description" autosize="{{autosize}}" placeholder="请输入事项简述" maxlength="200" />
+    <view class="button-container">
+      <t-button theme="primary" type="submit">提交</t-button>
+    </view>
+    
+  </form>
+</t-popup>

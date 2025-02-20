@@ -29,6 +29,12 @@ export async function updateOne(collectionName: string, query: any, newVal:any) 
   return handleResponse(res);
 }
 
+export async function insertOne(collectionName: string, newVal:any) {
+  const res = await mpserverless.db.collection(collectionName).insertOne(newVal);
+  console.log('===== ~ insertOne res:', res);
+  return handleResponse(res);
+}
+
 export async function request(collectionName: string) {
   const res = await mpserverless.db.collection(collectionName).find();
   return handleResponse(res);

@@ -10,7 +10,6 @@
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "我的小程序"
   },
-  "style": "v2",
   "rendererOptions": {
     "skyline": {
       "defaultDisplayBlock": true,

@@ -1,5 +1,5 @@
 import moment from 'moment';
-import { request, updateOne } from "./index";
+import { request, updateOne, insertOne } from "./index";
 
 moment.locale('zh-cn');
 
@@ -18,3 +18,5 @@ export const queryList = async () => {
 }
 
 export const updateThing = async (_id: string, newVal: any) => updateOne('things', { _id }, newVal);
+
+export const addThing = async (newVal: any) => insertOne('things', newVal);
