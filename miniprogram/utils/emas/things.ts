@@ -6,7 +6,7 @@ moment.locale('zh-cn');
 function parseTime(timestamp?: number) {
   if (!timestamp) return '';
   const mo = moment(timestamp);
-  return `${mo.format('YYYY-MM-DD')}(${mo.fromNow()})`
+  return `${mo.format('YYYY-MM-DD')}（${mo.fromNow()})`
 }
 
 export const queryList = async () => {
