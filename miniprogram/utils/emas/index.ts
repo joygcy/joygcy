@@ -1,4 +1,3 @@
-import { OSSUploadHeaders } from './../../../miniprogram_npm/@alicloud/mpserverless-sdk/esm/file/index.d';
 // app.js
 import MPServerless from '@alicloud/mpserverless-sdk';
 // AppID(小程序ID) wx3d216fe141150e70
@@ -35,7 +34,7 @@ export async function insertOne(collectionName: string, newVal:any) {
   return handleResponse(res);
 }
 
-export async function request(collectionName: string) {
-  const res = await mpserverless.db.collection(collectionName).find();
+export async function request(collectionName: string, query = {}, other = {}) {
+  const res = await mpserverless.db.collection(collectionName).find(query, other)
   return handleResponse(res);
 }

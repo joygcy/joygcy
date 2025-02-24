@@ -1,4 +1,4 @@
-import { updateThing } from '../../../utils/emas/things';
+import { handleOperate } from '../../../utils/emas/things';
 
 Page({
   data: {
@@ -35,11 +35,8 @@ Page({
     const newVal = {
       latestOperationTime: new Date(value).getTime(),
     };
-    updateThing(dataSource._id, newVal).then(() => {
-      this.setData({dataSource: {
-        ...dataSource,
-        ...newVal,
-      }});
+    handleOperate(dataSource, newVal).then((newData) => {
+      this.setData({dataSource: newData});
     });
   },
 });

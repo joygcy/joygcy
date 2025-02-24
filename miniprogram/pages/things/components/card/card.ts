@@ -1,4 +1,4 @@
-import { updateThing } from '../../../../utils/emas/things';
+import { handleOperate, updateThing } from '../../../../utils/emas/things';
 
 Component({
   touchStartX: undefined,
@@ -45,15 +45,11 @@ Component({
 
     onClick: function() {
       this.triggerEvent('click', this.properties.info)
-      console.log('===== ~ this.properties.info:', this.properties.info);
     },
 
-    onUpdateOperationTime: function(e: WechatMiniprogram.TapEvent) {
-      const { id } = e.currentTarget.dataset;
-      const newVal = {
-        latestOperationTime: new Date().getTime(),
-      };
-      updateThing(id, newVal).then(() => {
+    onUpdateOperationTime: function() {
+      handleOperate(this.properties.info).then((res) => {
+        console.log('===== ~onUpdateOperationTime res:', res);
         this.triggerEvent('update');
         this.setData({ showMenu: false });
       });
