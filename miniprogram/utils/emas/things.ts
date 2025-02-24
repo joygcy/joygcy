@@ -14,6 +14,7 @@ export const queryList = async () => {
   return data.map((item: any) => ({
     ...item,
     latestOperationTime: parseTime(item.latestOperationTime),
+    cycleDesc: `${item.cycleNum} ${item.cycleUnit}`
   }));
 }
 

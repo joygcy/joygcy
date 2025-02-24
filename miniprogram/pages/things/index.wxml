@@ -21,6 +21,7 @@
 >
   <form class="form" bindsubmit="onCreate">
     <t-input label="标题" name="title" placeholder="请输入事项标题" />
+    <t-input label="重复周期" name="cycleNum" placeholder="每XX天" />
     <t-textarea label="描述" name="description" autosize="{{autosize}}" placeholder="请输入事项简述" maxlength="200" />
     <view class="button-container">
       <t-button theme="primary" type="submit">提交</t-button>

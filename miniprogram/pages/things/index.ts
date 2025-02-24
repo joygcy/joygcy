@@ -58,6 +58,16 @@ Page({
       })
       return;
     }
+    if(!values.cycleNum) {
+      wx.showToast({
+        title: '请输入重复周期',
+        icon: 'error',
+        duration: 2000
+      })
+      return;
+    }
+
+    values.cycleUnit = '天';
 
     addThing(values).then(() => {
       this.loadData();

@@ -12,7 +12,8 @@
       </view>
 
       <view class="content">
-        {{info.description}}
+        <view>打卡周期：{{info.cycleDesc}}</view>
+        <view>{{info.description}}</view>
       </view>
     </view>
 
