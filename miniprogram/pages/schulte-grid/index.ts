@@ -20,6 +20,7 @@ Page({
     steps: [],
     startTime: 0,
     endTime: 0,
+    time: '-',
   },
   onLoad() {
     // 默认难度：默认难度上次做题的难度，再默认选择3*3
@@ -68,4 +69,10 @@ Page({
   },
   
   // 生成题目
+
+  onJumpToRules() {
+    wx.navigateTo({
+      url: '/pages/schulte-grid/rules/index',
+    });
+  },
 });

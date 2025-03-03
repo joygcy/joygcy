@@ -11,6 +11,12 @@
     theme="primary" size="large" class="btn" bind:tap="onStart">开始</t-button>
 </view>
 
+<view class="time-container">
+  <text class="time">当前用时：{{time || '-'}}</text>
+  <t-icon name="help-circle" size="24rpx" bind:click="onJumpToRules" />
+    
+</view>
+
 <!-- 难度选择 -->
 <t-picker
   visible="{{difficultyPickerVisible}}"

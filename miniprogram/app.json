@@ -5,7 +5,8 @@
     "pages/test/index",
     "pages/things/index",
     "pages/things/things-detail/index",
-    "pages/schulte-grid/index"
+    "pages/schulte-grid/index",
+    "pages/schulte-grid/rules/index"
   ],
   "window": {
     "navigationBarTextStyle": "black",
