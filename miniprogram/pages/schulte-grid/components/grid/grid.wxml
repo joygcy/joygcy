@@ -14,7 +14,9 @@
       data-value="{{array[indexX * cols.length + indexY]}}"
       bindtap="onTap"
     >
-      <view class="animate__animated {{animateCell === array[indexX * cols.length + indexY] ? 'animate__jello' : ''}}">{{array[indexX * cols.length + indexY]}}</view> 
+      <view
+        class="animate__animated {{animateCell === array[indexX * cols.length + indexY] ? animation : ''}}"
+      >{{array[indexX * cols.length + indexY]}}</view> 
     </view>
     
   </view>

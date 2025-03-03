@@ -34,6 +34,9 @@ Page({
   onHide() {
     this.onPause();
   },
+  onUnload() {
+    this.onStop();
+  },
   onPickerChange(e) {
     const { value } = e.detail;
 

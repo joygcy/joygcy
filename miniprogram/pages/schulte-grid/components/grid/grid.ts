@@ -93,6 +93,7 @@ Component({
       this.setData({
         steps: [...this.data.steps, { isCorrect, value, time: moment().format('YYYY-MM-DD HH:mm:ss') }],
         animateCell: value, // 点击动画
+        animation: isCorrect ? 'animate__jello' : 'animate__headShake'
       });
       
     }
