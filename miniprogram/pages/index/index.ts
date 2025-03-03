@@ -10,6 +10,11 @@ Page({
         key: 'things',
         label: '办事记录',
         page: '/pages/things/index',
+      },
+      {
+        key: 'schulte-grid',
+        label: '舒尔特方格',
+        page: '/pages/schulte-grid/index',
       }
     ],
   },

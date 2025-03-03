@@ -1,16 +1,16 @@
 .container {
   display: flex;
-  flex-wrap: wrap;
-  padding: 20rpx;
+  align-items: center;            /* 垂直居中对齐 */
+  padding: 20rpx;              /* 左右各留10px边距 */
 }
 
 .item {
-  width: 30%;
-  height: 200rpx;
+  width: calc((100vw - 80rpx) / 3); /* 宽度为屏幕宽度的三分之一减去左右边距 */
+  height: calc((100vw - 80rpx) / 3); /* 高度等于宽度 */
   border: solid 1px #ccc;
   border-radius: 8rpx;
-  margin-bottom: 20rpx;
-  margin-right: 20rpx;
+  margin: 0 10rpx 20rpx 10rpx;                  /* 上下无边距，左右各5px边距 */
   padding: 20rpx;
   text-align: center;
+  box-sizing: border-box;
 }

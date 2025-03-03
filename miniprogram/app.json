@@ -4,7 +4,8 @@
     "pages/record/index",
     "pages/test/index",
     "pages/things/index",
-    "pages/things/things-detail/index"
+    "pages/things/things-detail/index",
+    "pages/schulte-grid/index"
   ],
   "window": {
     "navigationBarTextStyle": "black",
