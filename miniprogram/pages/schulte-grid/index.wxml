@@ -1,3 +1,28 @@
-<view class="container">
-lalala
+<view class="header">
+  <t-cell class="left" title="选择难度" arrow hover note="{{difficulty}}" bind:click="onCityPicker" />
+  <t-button
+    wx:if="{{state === 'pause'}}"
+    theme="primary" size="large" class="btn" bind:tap="onContinue">继续</t-button>
+  <t-button
+    wx:elif="{{state === 'playing'}}"
+    theme="primary" size="large" class="btn" bind:tap="onPause">暂停</t-button>
+  <t-button
+    wx:else
+    theme="primary" size="large" class="btn" bind:tap="onStart">开始</t-button>
 </view>
+
+<!-- 难度选择 -->
+<t-picker
+  visible="{{difficultyPickerVisible}}"
+  value="{{difficulty}}"
+  data-key="city"
+  title="选择难度"
+  cancelBtn="取消"
+  confirmBtn="确认"
+  usingCustomNavbar
+  bindchange="onPickerChange"
+  bindpick="onColumnChange"
+  bindcancel="onPickerCancel"
+>
+  <t-picker-item options="{{difficultyOptions}}" />
+</t-picker>
