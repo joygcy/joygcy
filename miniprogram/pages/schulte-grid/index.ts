@@ -16,8 +16,6 @@ Page({
       { label: '9x9', value: '9x9' },
     ],
     state: 'ready',
-    current: 1,
-    steps: [],
     startTime: 0,
     endTime: 0,
     pauseTime: 0, // 暂停时间戳
@@ -88,6 +86,14 @@ Page({
     });
     this.data.elapsedTime += Date.now() - this.data.pauseTime;
     this.startTimer();
+  },
+  onStop() {
+    this.setData({
+      state: 'ready',
+      endTime: Date.now(),
+    });
+    clearInterval(this.data.intervalId);
+    this.updateTimeDisplay(0);
   },
   // 完成
   onFinish() {

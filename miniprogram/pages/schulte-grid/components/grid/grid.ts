@@ -35,7 +35,15 @@ Component({
   observers: {
     'difficulty': function(difficulty) {
       this.renderGrid(difficulty);
-    }
+    },
+    state: function(state) {
+      if (state === 'ready') {
+        this.setData({
+          array: [],
+          correctNum: 1,
+        });
+      }
+    },
   },
   export() {
     return { generate: this.generate }
@@ -48,7 +56,9 @@ Component({
       this.setData({
         rows: Array.from({ length: shapeArr[0] }),
         cols: Array.from({ length: shapeArr[1] }),
-        style:`width: ${size}; height: ${size};`
+        style:`width: ${size}; height: ${size};`,
+        array: [],
+        correctNum: 1,
       });
     },
     generate() {

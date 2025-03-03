@@ -1,7 +1,11 @@
 <wxs src="./tools.wxs" module="tools" />
 
 <view class="header">
-  <t-cell class="left" title="选择难度" arrow hover note="{{difficulty}}" bind:click="onCityPicker" />
+  <t-cell wx:if="{{state === 'ready' || state === 'success'}}"
+  class="left" title="选择难度" arrow hover note="{{difficulty}}" bind:click="onCityPicker" />
+  <t-button
+    wx:else
+    theme="primary" size="large" class="btn" bind:tap="onStop">结束</t-button>
   <t-button
     wx:if="{{state === 'pause'}}"
     theme="primary" size="large" class="btn" bind:tap="onContinue">继续</t-button>
