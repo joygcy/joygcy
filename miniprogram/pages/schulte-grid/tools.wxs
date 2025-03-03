@@ -2,7 +2,7 @@ var showStateDescInTimer = function (state) {
   return {
     'ready': '(未开始)',
     'pause': '(已暂停)',
-    'finish': '(已结束)',
+    'success': '(已结束)',
     'playing': '',
   }[state];
 }

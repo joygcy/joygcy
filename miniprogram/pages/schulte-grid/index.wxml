@@ -16,8 +16,9 @@
 <view class="time-container">
   <text class="time">当前用时：{{timeDesc || '-'}}{{tools.showStateDescInTimer(state)}}</text>
   <t-icon name="help-circle" size="24rpx" bind:click="onJumpToRules" />
-    
 </view>
+
+<grid id="grid" difficulty="{{difficulty}}" state="{{state}}" bind:finish="onFinish" />
 
 <!-- 难度选择 -->
 <t-picker

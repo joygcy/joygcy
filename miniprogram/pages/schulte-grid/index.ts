@@ -5,15 +5,15 @@ Page({
     difficultyPickerVisible: false,
     difficulty: '3x3',
     difficultyOptions: [
-      { label: '2x2', value: '4' },
-      { label: '3x2', value: '6' },
-      { label: '3x3', value: '9' },
-      { label: '4x4', value: '16' },
-      { label: '5x5', value: '25' },
-      { label: '6x6', value: '36' },
-      { label: '7x7', value: '49' },
-      { label: '8x8', value: '64' },
-      { label: '9x9', value: '81' },
+      { label: '2x2', value: '2x2' },
+      { label: '3x2', value: '3x2' },
+      { label: '3x3', value: '3x3' },
+      { label: '4x4', value: '4x4' },
+      { label: '5x5', value: '5x5' },
+      { label: '6x6', value: '6x6' },
+      { label: '7x7', value: '7x7' },
+      { label: '8x8', value: '8x8' },
+      { label: '9x9', value: '9x9' },
     ],
     state: 'ready',
     current: 1,
@@ -28,8 +28,9 @@ Page({
   onLoad() {
     // 默认难度：默认难度上次做题的难度，再默认选择3*3
     const getLastDifficulty = wx.getStorageSync('lastDifficulty');
+    const difficulty = getLastDifficulty?.[0] || '3x3'
     this.setData({
-      difficulty: getLastDifficulty?.[0] || '3x3',
+      difficulty,
     });
   },
   onHide() {
@@ -65,9 +66,12 @@ Page({
       startTime: Date.now(),
     });
 
+    // 随机生成题目
+    this.selectComponent('#grid')?.generate?.();
     // 开始计时
     this.updateTimeDisplay(0);
     this.startTimer();
+
   },
   // 暂停
   onPause() {
@@ -84,6 +88,14 @@ Page({
     });
     this.data.elapsedTime += Date.now() - this.data.pauseTime;
     this.startTimer();
+  },
+  // 完成
+  onFinish() {
+    this.setData({
+      state: 'success',
+      endTime: Date.now(),
+    });
+    clearInterval(this.data.intervalId);
   },
   
   // 生成题目
