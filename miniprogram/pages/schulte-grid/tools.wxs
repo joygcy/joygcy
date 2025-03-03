@@ -1,0 +1,12 @@
+var showStateDescInTimer = function (state) {
+  return {
+    'ready': '(未开始)',
+    'pause': '(已暂停)',
+    'finish': '(已结束)',
+    'playing': '',
+  }[state];
+}
+module.exports = {
+  showStateDescInTimer: showStateDescInTimer,
+};
+module.exports.msg = "some msg";

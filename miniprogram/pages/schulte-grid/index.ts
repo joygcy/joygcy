@@ -20,7 +20,10 @@ Page({
     steps: [],
     startTime: 0,
     endTime: 0,
-    time: '-',
+    pauseTime: 0, // 暂停时间戳
+    elapsedTime: 0, // 暂停时长
+    timeDesc: '-',
+    intervalId: 0,
   },
   onLoad() {
     // 默认难度：默认难度上次做题的难度，再默认选择3*3
@@ -57,15 +60,30 @@ Page({
   },
   // 开始
   onStart() {
-    this.setData({ state: 'playing' });
+    this.setData({
+      state: 'playing',
+      startTime: Date.now(),
+    });
+
+    // 开始计时
+    this.updateTimeDisplay(0);
+    this.startTimer();
   },
   // 暂停
   onPause() {
-    this.setData({ state: 'pause' });
+    this.setData({
+      state: 'pause',
+    });
+    this.data.pauseTime = Date.now();
+    clearInterval(this.data.intervalId);
   },
   // 继续
   onContinue() {
-    this.setData({ state: 'playing' });
+    this.setData({
+      state: 'playing',
+    });
+    this.data.elapsedTime += Date.now() - this.data.pauseTime;
+    this.startTimer();
   },
   
   // 生成题目
@@ -74,5 +92,31 @@ Page({
     wx.navigateTo({
       url: '/pages/schulte-grid/rules/index',
     });
+  },
+  // 开启秒表
+  startTimer() {
+    this.data.intervalId = setInterval(() => {
+      const now = Date.now();
+      const elapsed = now - this.data.startTime - this.data.elapsedTime;
+      this.updateTimeDisplay(elapsed);
+  }, 1000);
+  },
+  // 渲染秒表
+  updateTimeDisplay(time: number) {
+    if (time < 0) {
+      this.setData({
+        timeDesc: '-',
+      });
+    }
+    const seconds = this.renderTime(Math.floor((time / 1000) % 60)),
+        minutes = this.renderTime(Math.floor((time / (1000 * 60)) % 60)),
+        hours = this.renderTime(Math.floor((time / (1000 * 60 * 60)) % 24));
+    this.setData({
+      timeDesc: `${hours}:${minutes}:${seconds}`
+    });
+  },
+  // 时、分、秒变成2个数字，不足2个数字前面补0
+  renderTime(time: number) {
+    return time.toString().padStart(2, '0');
   },
 });
