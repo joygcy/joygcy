@@ -1,5 +1,7 @@
 import moment from 'moment';
 Component({
+  cellAnimation: null,
+  numberAnimation: null,
   behaviors: [],
   properties: {
     difficulty: {
@@ -21,10 +23,15 @@ Component({
     animateCell: 0,
   },
   lifetimes: {
-    created() {
-      
+    created () {
     },
     attached() {
+      this.cellAnimation = wx.createAnimation({
+        duration: 100,
+      });
+      this.numberAnimation = wx.createAnimation({
+        duration: 100,
+      });
     },
     moved() {
     },
@@ -90,10 +97,14 @@ Component({
           this.triggerEvent('finish');
         }
       }
+      this.cellAnimation.backgroundColor(isCorrect ? 'aliceblue' : 'pink').step().backgroundColor('white').step();
+      this.numberAnimation.opacity(0.5).step().opacity(1).step();
+    
       this.setData({
+        cellAnimation: { [`cell${value}`]: this.cellAnimation.export()},
+        numberAnimation: { [`cell${value}`]: this.numberAnimation.export()},
         steps: [...this.data.steps, { isCorrect, value, time: moment().format('YYYY-MM-DD HH:mm:ss') }],
         animateCell: value, // 点击动画
-        animation: isCorrect ? 'animate__jello' : 'animate__headShake'
       });
       
     }

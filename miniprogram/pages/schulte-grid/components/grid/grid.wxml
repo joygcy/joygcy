@@ -12,10 +12,11 @@
       class="item"
       style="{{style}}"
       data-value="{{array[indexX * cols.length + indexY]}}"
+      animation="{{cellAnimation['cell' + array[indexX * cols.length + indexY]]}}"
       bindtap="onTap"
     >
       <view
-        class="animate__animated {{animateCell === array[indexX * cols.length + indexY] ? animation : ''}}"
+        animation="{{numberAnimation['cell' + array[indexX * cols.length + indexY]]}}"
       >{{array[indexX * cols.length + indexY]}}</view> 
     </view>
     
