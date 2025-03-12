@@ -22,7 +22,34 @@
   <t-icon name="help-circle" size="24rpx" bind:click="onJumpToRules" />
 </view>
 
-<grid id="grid" difficulty="{{difficulty}}" state="{{state}}" bind:finish="onFinish" />
+<grid
+  id="grid" 
+  pageInstance="{{pageInstance}}" 
+  difficulty="{{difficulty}}" 
+  state="{{state}}"
+  bind:addStep="onAddStep"
+  bind:finish="onFinish" 
+/>
+{{state}}-
+{{steps.length}}
+
+<view wx:if="{{state === 'success'}}" class="result-container">
+  <view class="title">结果分析</view>
+  <t-cell title="用时" note="{{timeDesc}}" />
+  <t-cell title="错误次数" note="{{steps.length}}" />
+  <t-cell title="过程" />
+  <t-steps layout="vertical" theme="dot"  current="{{steps.length}}">
+    <t-step-item 
+      wx:for="{{steps}}" 
+      wx:key="index"
+    >
+      <view slot="title" class="step-item {{item.isCorrect ? '' : 'step-item-incorrect'}}">
+        <view class="step-item-value">点击：{{item.value}}</view>
+        <view class="step-item-time">{{item.time}}</view>
+      </view>
+    </t-step-item>
+  </t-steps>
+</view>
 
 <!-- 难度选择 -->
 <t-picker

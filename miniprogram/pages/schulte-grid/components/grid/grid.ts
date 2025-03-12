@@ -4,6 +4,7 @@ Component({
   numberAnimation: null,
   behaviors: [],
   properties: {
+    pageInstance: Object,
     difficulty: {
       type: String,
       value: '3x3',
@@ -19,7 +20,6 @@ Component({
     style: 50, // 宽高
     array: [],
     correctNum: 1,
-    steps: [],
     animateCell: 0,
   },
   lifetimes: {
@@ -99,14 +99,16 @@ Component({
       }
       this.cellAnimation.backgroundColor(isCorrect ? 'aliceblue' : 'pink').step().backgroundColor('white').step();
       this.numberAnimation.opacity(0.5).step().opacity(1).step();
-    
+
+      // 直接更新页面实例的steps
+      // this.properties.pageInstance.steps.push({ isCorrect, value, time: moment().format('YYYY-MM-DD HH:mm:ss') })
+      this.triggerEvent('addStep', { isCorrect, value, time: moment().format('YYYY-MM-DD HH:mm:ss') });
+      
       this.setData({
         cellAnimation: { [`cell${value}`]: this.cellAnimation.export()},
         numberAnimation: { [`cell${value}`]: this.numberAnimation.export()},
-        steps: [...this.data.steps, { isCorrect, value, time: moment().format('YYYY-MM-DD HH:mm:ss') }],
         animateCell: value, // 点击动画
       });
-      
     }
   },
 });

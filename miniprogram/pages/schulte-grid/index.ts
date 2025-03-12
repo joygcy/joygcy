@@ -1,7 +1,9 @@
 type IState = 'ready' | 'playing' | 'success' | 'fail' | 'pause';
 
 Page({
+  steps: [],
   data: {
+    steps: [],
     difficultyPickerVisible: false,
     difficulty: '3x3',
     difficultyOptions: [
@@ -66,6 +68,7 @@ Page({
       state: 'playing',
       startTime: Date.now(),
     });
+    this.steps = [];
 
     // 随机生成题目
     this.selectComponent('#grid')?.generate?.();
@@ -94,6 +97,7 @@ Page({
     this.setData({
       state: 'ready',
       endTime: Date.now(),
+      steps: this.steps,
     });
     clearInterval(this.data.intervalId);
     this.updateTimeDisplay(0);
@@ -139,5 +143,8 @@ Page({
   // 时、分、秒变成2个数字，不足2个数字前面补0
   renderTime(time: number) {
     return time.toString().padStart(2, '0');
+  },
+  onAddStep(e) {
+    this.steps.push(e.detail);
   },
 });

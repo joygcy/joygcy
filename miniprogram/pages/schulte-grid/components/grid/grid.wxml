@@ -25,21 +25,3 @@
 
   <view wx:if="{{state === 'pause'}}" class="mask">已暂停</view>
 </view>
-
-<view wx:if="{{state === 'success'}}" class="result-container">
-  <view class="title">结果分析</view>
-  <t-cell title="用时" note="辅助信息" />
-  <t-cell title="错误次数" note="辅助信息" />
-  <t-cell title="过程" />
-  <t-steps layout="vertical" theme="dot"  current="{{array.length}}">
-    <t-step-item 
-      wx:for="{{steps}}" 
-      wx:key="index"
-    >
-      <view slot="title" class="step-item {{item.isCorrect ? '' : 'step-item-incorrect'}}">
-        <view class="step-item-value">点击：{{item.value}}</view>
-        <view class="step-item-time">{{item.time}}</view>
-      </view>
-    </t-step-item>
-  </t-steps>
-</view>
