@@ -16,6 +16,7 @@
       bindtap="onTap"
     >
       <view
+        class="number"
         animation="{{numberAnimation['cell' + array[indexX * cols.length + indexY]]}}"
       >{{array[indexX * cols.length + indexY]}}</view> 
     </view>

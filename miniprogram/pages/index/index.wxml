@@ -7,7 +7,7 @@
     bindtap="onJumpTo"
   >  
     <t-icon name="{{item.icon}}" color="{{item.color}}" size="96rpx" />
-    <view >{{item.label}}</view> 
+    <view>{{item.label}}</view> 
     
   </view>
 </view>

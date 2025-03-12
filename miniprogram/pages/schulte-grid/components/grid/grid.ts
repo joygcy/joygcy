@@ -63,7 +63,7 @@ Component({
       this.setData({
         rows: Array.from({ length: shapeArr[0] }),
         cols: Array.from({ length: shapeArr[1] }),
-        style:`width: ${size}; height: ${size};`,
+        style:`width: ${size}; height: ${size};font-size: ${size};`,
         array: [],
         correctNum: 1,
       });
