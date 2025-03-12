@@ -7,10 +7,18 @@
 .item {
   width: calc((100vw - 80rpx) / 3); /* 宽度为屏幕宽度的三分之一减去左右边距 */
   height: calc((100vw - 80rpx) / 3); /* 高度等于宽度 */
-  border: solid 1px #ccc;
-  border-radius: 8rpx;
+  // border: solid 1px #ccc;
+  border-radius: 16rpx;
   margin: 0 10rpx 20rpx 10rpx;                  /* 上下无边距，左右各5px边距 */
   padding: 20rpx;
-  text-align: center;
   box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  & :last-child {
+    margin-top: 10rpx;
+  }
 }

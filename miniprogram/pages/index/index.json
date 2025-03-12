@@ -1,4 +1,6 @@
 {
-  "navigationBarTitleText": "功能列表",
-  "usingComponents": {}
+  "navigationBarTitleText": "碎片时间能做什么？",
+  "usingComponents": {
+    "t-icon": "tdesign-miniprogram/icon/icon"
+  }
 }
